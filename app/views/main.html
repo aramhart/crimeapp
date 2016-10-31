@@ -1,22 +1,52 @@
 <div class="jumbotron">
   <h1>Crime Data</h1>
   <p class="lead">
-    Main page..
-<div class="col-lg-6">
+ <!-- search box for crime data -->
+  
+   <div class="input-group search-bar">
+      <input type="text" ng-model="search" ng-model-options="{ debounce: 800 }" onclick="select()" class="form-control" placeholder="Search by area.." autofocus />
+      <span class="input-group-addon bar-style"><i class="glyphicon glyphicon-search"></i></span>
+    </div>
+
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
+      <input type="text" class="form-control" placeholder="Search for crimes..">
       <span class="input-group-btn">
         <button class="btn btn-default" type="button">Go!</button>
       </span>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
 
-  
+  <!-- end search box for crime data -->
+
+   <div>
+    <ng-map zoom="12" center="[36.96, -122.10]">
+      <marker ng-repeat="p in crimeData.crimes"
+        position="{{p.lat}}  {{p.lon}}"
+        data="{{data[$index]}}"
+        on-click="showData()";
+        title="pos: {{p.pos}}"></marker>
+
+         <marker position="40.71, -74.21"
+          on-click="vm.toggleBounce()"
+          animation="DROP"
+          draggable="true"></marker>
+
+          <marker position="{{crimedata., -122.10"
+          on-click="vm.toggleBounce()"
+          animation="DROP"
+          draggable="true"></marker>
+          
+    </ng-map>
+  </div>
+
+
     <p>ng-repeat:</p>
   <ul>
     <li ng-repeat="crime in crimeData.crimes">
       {{ crime.date }}
       {{ crime.type }}
+      {{ crime.lat }}
+      {{ crime.lon }}
     </li>
   </ul>
     </p>
